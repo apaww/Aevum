@@ -3,8 +3,11 @@ package com.example.aevum
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material3.Icon
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Send
@@ -20,14 +23,16 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.example.aevum.pages.FocusPage
 import com.example.aevum.pages.TemplatePage
+import com.google.firebase.perf.util.Timer
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
 
     val NavItemList = listOf<NavItem>(
         NavItem("Page 1", Icons.Default.Home),
-        NavItem("Page 2", Icons.Default.Person),
+        NavItem("Focus", Icons.Default.Timer),
         NavItem("Page 3", Icons.Default.Settings)
     )
 
@@ -63,7 +68,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
 fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int) {
     when(selectedIndex) {
         0 -> TemplatePage()
-        1 -> TemplatePage()
+        1 -> FocusPage()
         2 -> TemplatePage()
     }
 }

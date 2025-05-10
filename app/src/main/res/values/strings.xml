@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Aevum</string>
+    <string name="focus_hours">Hours</string>
+    <string name="focus_minutes">Minutes</string>
+    <string name="focus_start">Start</string>
+    <string name="focus_reset">Reset</string>
+    <string name="focus_notification_title">Timer Completed</string>
+    <string name="focus_notification_string">Your timer has finished!</string>
 </resources>
