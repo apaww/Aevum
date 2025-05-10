@@ -6,4 +6,6 @@
     <string name="focus_reset">Reset</string>
     <string name="focus_notification_title">Timer Completed</string>
     <string name="focus_notification_string">Your timer has finished!</string>
+    <string name="bar_focus">Focus</string>
+    <string name="bar_settings">Settings</string>
 </resources>

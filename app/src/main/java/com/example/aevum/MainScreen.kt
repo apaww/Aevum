@@ -23,17 +23,21 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.aevum.pages.FocusPage
+import com.example.aevum.pages.SettingsPage
 import com.example.aevum.pages.TemplatePage
 import com.google.firebase.perf.util.Timer
+
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
 
     val NavItemList = listOf<NavItem>(
         NavItem("Page 1", Icons.Default.Home),
-        NavItem("Focus", Icons.Default.Timer),
-        NavItem("Page 3", Icons.Default.Settings)
+        NavItem(stringResource(R.string.bar_focus), Icons.Default.Timer),
+        NavItem(stringResource(R.string.bar_settings), Icons.Default.Settings)
     )
 
     var selectedIndex by remember {
@@ -69,6 +73,6 @@ fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int) {
     when(selectedIndex) {
         0 -> TemplatePage()
         1 -> FocusPage()
-        2 -> TemplatePage()
+        2 -> SettingsPage()
     }
 }
