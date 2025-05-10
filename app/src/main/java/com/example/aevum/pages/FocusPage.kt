@@ -154,7 +154,9 @@ fun Timer(timerState: TimerState) {
 
             if (timerState.remainingTimeInSeconds == 0L) {
                 timerState.isRunning = false
-                showNotification(context, "Timer Completed", "Your timer has finished!")
+                showNotification(context,
+                    context.getString(R.string.focus_notification_title),
+                    context.getString(R.string.focus_notification_string))
                 // Stop music when timer ends
                 mediaPlayer?.release()
                 mediaPlayer = null
