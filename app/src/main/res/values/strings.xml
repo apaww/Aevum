@@ -8,4 +8,7 @@
     <string name="focus_notification_string">Your timer has finished!</string>
     <string name="bar_focus">Focus</string>
     <string name="bar_settings">Settings</string>
+    <string name="today_welcome">Any plans for today?</string>
+    <string name="bar_today">Today</string>
+    <string name="bar_history">History</string>
 </resources>

@@ -69,18 +69,19 @@ class TimerState {
 
 
 @Composable
+@Preview
 fun FocusPage(modifier: Modifier = Modifier) {
     val filled = MaterialTheme.colorScheme.primary
     val voided = MaterialTheme.colorScheme.primaryContainer
     var sizePx by remember { mutableIntStateOf(900) }
     val sizeDp = with(LocalDensity.current) { sizePx.toDp() }
     val timerState = remember { TimerState() }
-    // Calculate progress (0f to 1f) and corresponding sweep angle
+
     val totalSeconds = remember(timerState.hours, timerState.minutes) {
         (timerState.hours.toIntOrNull()?.times(3600) ?: 0) +
                 (timerState.minutes.toIntOrNull()?.times(60) ?: 0)
     }
-    // Calculate progress (0f to 1f)
+
     val progress by animateFloatAsState(
         targetValue = if (totalSeconds > 0) {
             (totalSeconds.toFloat() - timerState.remainingTimeInSeconds.toFloat()) / totalSeconds.toFloat()
@@ -88,13 +89,12 @@ fun FocusPage(modifier: Modifier = Modifier) {
             1f
         },
         animationSpec = tween(
-            durationMillis = 1000, // Matches the 1-second timer tick
+            durationMillis = 1000,
             easing = LinearEasing
         ),
         label = "timerProgressAnimation"
     )
 
-    // Calculate sweep angle with animation
     val sweepAngle by animateFloatAsState(
         targetValue = 260f * progress,
         animationSpec = tween(
@@ -141,12 +141,10 @@ fun Timer(timerState: TimerState) {
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     }
 
-    // Create notification channel (required for Android 8.0+)
     LaunchedEffect(Unit) {
         createNotificationChannel(context)
     }
 
-    // Timer logic
     LaunchedEffect(timerState.isRunning, timerState.remainingTimeInSeconds) {
         if (timerState.isRunning && timerState.remainingTimeInSeconds > 0) {
             delay(1000)
@@ -164,7 +162,6 @@ fun Timer(timerState: TimerState) {
         }
     }
 
-    // Start music when timer starts
     LaunchedEffect(timerState.isRunning) {
         if (timerState.isRunning && timerState.remainingTimeInSeconds > 0) {
             mediaPlayer?.release()
@@ -178,7 +175,6 @@ fun Timer(timerState: TimerState) {
         }
     }
 
-    // Clean up media player when composable is disposed
     DisposableEffect(Unit) {
         onDispose {
             mediaPlayer?.release()
@@ -192,7 +188,6 @@ fun Timer(timerState: TimerState) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Display current time remaining
         Text(
             text = formatTime(timerState.remainingTimeInSeconds),
             style = MaterialTheme.typography.displayMedium
@@ -200,7 +195,6 @@ fun Timer(timerState: TimerState) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Time input fields
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -240,7 +234,6 @@ fun Timer(timerState: TimerState) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Control buttons
         Row(
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {

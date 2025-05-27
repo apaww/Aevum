@@ -1,4 +1,4 @@
-package com.example.aevum
+package com.example.aevum.data
 
 import androidx.compose.ui.graphics.vector.ImageVector
 
