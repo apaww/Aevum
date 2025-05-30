@@ -165,7 +165,7 @@ fun TodayPage(modifier: Modifier = Modifier) {
             shape = RoundedCornerShape(16.dp)
         ) {
             Text(
-                text = "Create new",
+                text = stringResource(R.string.today_create_new),
                 fontSize = 31.sp,
                 style = MaterialTheme.typography.headlineSmall.copy(
                     color = MaterialTheme.colorScheme.onBackground,
@@ -262,8 +262,8 @@ fun DeleteTaskConfirmationDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Delete Task") },
-        text = { Text("Are you sure you want to delete \"$taskName\"?") },
+        title = { Text(stringResource(R.string.today_delete_task)) },
+        text = { Text(stringResource(R.string.today_sure, taskName)) },
         confirmButton = {
             TextButton(
                 onClick = {
@@ -274,12 +274,12 @@ fun DeleteTaskConfirmationDialog(
                     contentColor = MaterialTheme.colorScheme.error
                 )
             ) {
-                Text("Delete")
+                Text(stringResource(R.string.today_delete))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.today_cancel))
             }
         }
     )
@@ -296,13 +296,13 @@ fun AddTaskDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Add New Task") },
+        title = { Text(stringResource(R.string.today_add)) },
         text = {
             Column {
                 TextField(
                     value = taskText,
                     onValueChange = { taskText = it },
-                    label = { Text("Task description") },
+                    label = { Text(stringResource(R.string.today_task_description)) },
                     modifier = Modifier.fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                     keyboardActions = KeyboardActions(
@@ -318,7 +318,7 @@ fun AddTaskDialog(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Task will be added to today's list",
+                    text = stringResource(R.string.today_added),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
@@ -336,12 +336,12 @@ fun AddTaskDialog(
                 },
                 enabled = taskText.isNotBlank()
             ) {
-                Text("Add Task")
+                Text(stringResource(R.string.today_add_task))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.today_cancel))
             }
         }
     )

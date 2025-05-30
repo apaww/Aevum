@@ -28,7 +28,6 @@ object DayRepository {
         return dayDao ?: throw IllegalStateException("DayRepository not initialized. Call initialize() first.")
     }
 
-    // Create or update a day with all data
     suspend fun createOrUpdateDay(
         day: Int,
         tasks: List<String> = emptyList(),
@@ -47,7 +46,6 @@ object DayRepository {
         }
     }
 
-    // Add new tasks to an existing day
     suspend fun addTasks(day: Int, newTasks: List<String>) {
         withContext(Dispatchers.IO) {
             val existingDay = requireDao().getDay(day) ?: run {
@@ -70,7 +68,6 @@ object DayRepository {
         }
     }
 
-    // Add new phone unlock reasons
     suspend fun addPhoneUnlocks(day: Int, unlockReasons: List<String>) {
         withContext(Dispatchers.IO) {
             val existingDay = requireDao().getDay(day) ?: run {
@@ -90,7 +87,6 @@ object DayRepository {
         }
     }
 
-    // Update task completion status
     suspend fun updateTaskDone(day: Int, taskIndex: Int, isDone: Boolean) {
         withContext(Dispatchers.IO) {
             val existingDay = requireDao().getDay(day) ?: return@withContext
@@ -103,7 +99,6 @@ object DayRepository {
         }
     }
 
-    // Get all days with converted data
     fun getAllDays(): Flow<List<DayData>> {
         return requireDao().getDays().map { days ->
             days.map { day ->
@@ -117,7 +112,6 @@ object DayRepository {
         }
     }
 
-    // Get a specific day with converted data
     suspend fun getDay(day: Int): DayData? {
         return withContext(Dispatchers.IO) {
             requireDao().getDay(day)?.let { dayEntity ->
@@ -144,31 +138,6 @@ object DayRepository {
         }
     }
 
-    suspend fun getOrCreateDay(day: Int): DayRepository.DayData {
-        return requireDao().getDay(day)?.let { dayEntity ->
-            DayRepository.DayData(
-                day = dayEntity.day,
-                tasks = dayEntity.tasksNames.split("_").filter { it.isNotEmpty() },
-                tasksDone = dayEntity.tasksDone.map { it == '1' },
-                phoneUnlocks = dayEntity.phoneUnlocks.split("_").filter { it.isNotEmpty() }
-            )
-        } ?: run {
-            val newDay = Day(
-                day = day,
-                tasksNames = "",
-                tasksDone = "",
-                phoneUnlocks = ""
-            )
-            requireDao().upsertDay(newDay)
-            DayRepository.DayData(
-                day = newDay.day,
-                tasks = emptyList(),
-                tasksDone = emptyList(),
-                phoneUnlocks = emptyList()
-            )
-        }
-    }
-
     private fun DayData.toTaskItems(): List<TaskItem> {
         return this.tasks.zip(this.tasksDone) { name, isDone ->
             TaskItem(
@@ -178,7 +147,6 @@ object DayRepository {
         }
     }
 
-    // Data class for converted day information
     data class DayData(
         val day: Int,
         val tasks: List<String>,

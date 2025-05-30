@@ -72,7 +72,7 @@ fun DayPage (day: DaySummary, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Tasks:",
+            text = stringResource(R.string.day_tasks),
             fontSize = 31.sp,
             style = MaterialTheme.typography.headlineSmall.copy(
                 color = MaterialTheme.colorScheme.onBackground,
@@ -105,7 +105,7 @@ fun DayPage (day: DaySummary, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Phone Unlocks: " + day.phoneUnlocks,
+            text = stringResource(R.string.day_unlocks) + day.phoneUnlocks,
             fontSize = 31.sp,
             style = MaterialTheme.typography.headlineSmall.copy(
                 color = MaterialTheme.colorScheme.onBackground,

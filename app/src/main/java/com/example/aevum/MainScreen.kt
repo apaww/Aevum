@@ -75,9 +75,9 @@ fun MainScreen(modifier: Modifier = Modifier) {
 @Composable
 fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int) {
     when(selectedIndex) {
-        3 -> TodayPage()
+        0 -> TodayPage()
         1 -> FocusPage()
         2 -> HistoryPage()
-        0 -> SettingsPage()
+        3 -> SettingsPage()
     }
 }

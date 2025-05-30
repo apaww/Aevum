@@ -40,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +48,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.aevum.R
 import com.example.aevum.data.DaySummary
 import com.example.aevum.data.DayViewModel
 import java.text.SimpleDateFormat
@@ -91,7 +93,7 @@ fun HistoryPage(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                "History of daily activity",
+                stringResource(R.string.history_history),
                 fontSize = 31.sp,
                 style = MaterialTheme.typography.headlineSmall.copy(
                     color = MaterialTheme.colorScheme.onBackground,
@@ -115,7 +117,8 @@ fun HistoryPage(
                     .border(
                         width = 4.dp,
                         color = MaterialTheme.colorScheme.primary,
-                        shape = RoundedCornerShape(16.dp))
+                        shape = RoundedCornerShape(16.dp)
+                    )
             ) {
             DaysList(
                 days = days,
@@ -186,11 +189,13 @@ fun DaySummaryItem(
 
             Column(horizontalAlignment = Alignment.End) {
                 Text(
-                    text = "${day.tasksCompleted}/${day.totalTasks} tasks",
+                    text = day.tasksCompleted.toString() + "/" + day.totalTasks.toString() + stringResource(
+                        R.string.history_tasks
+                    ),
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = "${day.phoneUnlocks} unlocks",
+                    text = day.phoneUnlocks.toString() + stringResource(R.string.history_unlocks),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

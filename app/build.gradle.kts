@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.window)
     implementation(libs.androidx.window.core)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
