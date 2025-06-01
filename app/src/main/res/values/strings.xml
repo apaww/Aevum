@@ -24,7 +24,7 @@
     <string name="today_delete">Delete</string>
     <string name="today_sure">Are you sure you want to delete \"%1$s\"?</string>
     <string name="today_delete_task">Delete Task</string>
-    <string name="today_create_new">Create new</string>
+    <string name="today_create_new">Create Task</string>
     <string name="settings_title">Settings</string>
     <string name="theme_preference">App Theme</string>
     <string name="theme_light">Light</string>

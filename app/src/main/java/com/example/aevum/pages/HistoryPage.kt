@@ -122,7 +122,7 @@ fun HistoryPage(
             ) {
             DaysList(
                 days = days,
-                onDayClick = { day -> selectedDay = day } // Receive DaySummary directly
+                onDayClick = { day -> selectedDay = day }
             )
             }
         }
@@ -133,7 +133,7 @@ fun HistoryPage(
 @Composable
 fun DaysList(
     days: List<DaySummary>,
-    onDayClick: (DaySummary) -> Unit, // Change to accept DaySummary
+    onDayClick: (DaySummary) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -149,7 +149,7 @@ fun DaysList(
                 day = day,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onDayClick(day) } // Pass the day object
+                    .clickable { onDayClick(day) }
                     .animateItemPlacement()
             )
         }

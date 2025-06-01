@@ -66,18 +66,18 @@ fun SettingsPage(
         }
     }
 
-    val phoneStateLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        viewModel.hasPhoneStatePermission = isGranted
-        if (isGranted) {
-            Toast.makeText(context,
-                context.getString(R.string.settings_phone_tracking_permission_granted), Toast.LENGTH_SHORT).show()
-        }
-    }
+//    val phoneStateLauncher = rememberLauncherForActivityResult(
+//        ActivityResultContracts.RequestPermission()
+//    ) { isGranted ->
+//        viewModel.hasPhoneStatePermission = isGranted
+//        if (isGranted) {
+//            Toast.makeText(context,
+//                context.getString(R.string.settings_phone_tracking_permission_granted), Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
     var showNotificationDialog by remember { mutableStateOf(false) }
-    var showPhoneStateDialog by remember { mutableStateOf(false) }
+//    var showPhoneStateDialog by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -155,18 +155,18 @@ fun SettingsPage(
             }
         )
 
-        PermissionButton(
-            text = "Phone Unlock Tracking",
-            isGranted = viewModel.hasPhoneStatePermission,
-            onClick = {
-                if (viewModel.hasPhoneStatePermission) {
-                    Toast.makeText(context,
-                        context.getString(R.string.settings_permission_already_granted), Toast.LENGTH_SHORT).show()
-                } else {
-                    showPhoneStateDialog = true
-                }
-            }
-        )
+//        PermissionButton(
+//            text = "Phone Unlock Tracking",
+//            isGranted = viewModel.hasPhoneStatePermission,
+//            onClick = {
+//                if (viewModel.hasPhoneStatePermission) {
+//                    Toast.makeText(context,
+//                        context.getString(R.string.settings_permission_already_granted), Toast.LENGTH_SHORT).show()
+//                } else {
+//                    showPhoneStateDialog = true
+//                }
+//            }
+//        )
 
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -280,26 +280,26 @@ fun SettingsPage(
         )
     }
 
-    if (showPhoneStateDialog) {
-        AlertDialog(
-            onDismissRequest = { showPhoneStateDialog = false },
-            title = { Text(stringResource(R.string.settings_phone_unlock_tracking)) },
-            text = { Text(stringResource(R.string.settings_this_permission_helps_track_how_often)) },
-            confirmButton = {
-                Button(onClick = {
-                    showPhoneStateDialog = false
-                    phoneStateLauncher.launch(Manifest.permission.READ_PHONE_STATE)
-                }) {
-                    Text(stringResource(R.string.settings_continue))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showPhoneStateDialog = false }) {
-                    Text(stringResource(R.string.settings_cancel))
-                }
-            }
-        )
-    }
+//    if (showPhoneStateDialog) {
+//        AlertDialog(
+//            onDismissRequest = { showPhoneStateDialog = false },
+//            title = { Text(stringResource(R.string.settings_phone_unlock_tracking)) },
+//            text = { Text(stringResource(R.string.settings_this_permission_helps_track_how_often)) },
+//            confirmButton = {
+//                Button(onClick = {
+//                    showPhoneStateDialog = false
+//                    phoneStateLauncher.launch(Manifest.permission.READ_PHONE_STATE)
+//                }) {
+//                    Text(stringResource(R.string.settings_continue))
+//                }
+//            },
+//            dismissButton = {
+//                TextButton(onClick = { showPhoneStateDialog = false }) {
+//                    Text(stringResource(R.string.settings_cancel))
+//                }
+//            }
+//        )
+//    }
 }
 
 @Composable

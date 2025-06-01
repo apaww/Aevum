@@ -14,8 +14,8 @@
     <string name="day_tasks">Задачи:</string>
     <string name="day_unlocks">Разблокировок телефона: </string>
     <string name="history_history">История ежедневной активности</string>
-    <string name="history_unlocks"> разблокировок</string>
-    <string name="history_tasks"> задач</string>
+    <string name="history_unlocks">"  разблокировок"</string>
+    <string name="history_tasks">"  задач"</string>
     <string name="today_cancel">Отмена</string>
     <string name="today_add_task">Добавить задачу</string>
     <string name="today_added">Задача будет добавлена в сегодняшний список</string>
@@ -24,7 +24,7 @@
     <string name="today_delete">Удалить</string>
     <string name="today_sure">Вы уверены, что хотите удалить \"%1$s\"?</string>
     <string name="today_delete_task">Удалить задачу</string>
-    <string name="today_create_new">Создать новую</string>
+    <string name="today_create_new">Добавить задачу</string>
     <string name="settings_title">Настройки</string>
     <string name="theme_preference">Тема приложения</string>
     <string name="theme_light">Светлая</string>

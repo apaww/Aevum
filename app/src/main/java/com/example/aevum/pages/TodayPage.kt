@@ -72,7 +72,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aevum.R
 import com.example.aevum.data.TaskItem
-import com.example.aevum.data.DataProvider
 import com.example.aevum.data.DayRepository
 import java.text.SimpleDateFormat
 import java.util.Date

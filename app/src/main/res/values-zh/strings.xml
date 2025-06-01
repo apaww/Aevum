@@ -14,7 +14,7 @@
     <string name="day_tasks">任务：</string>
     <string name="day_unlocks">手机解锁：</string>
     <string name="history_history">每日活动历史</string>
-    <string name="history_unlocks">次解锁</string>
+    <string name="history_unlocks">" 次解锁"</string>
     <string name="history_tasks">个任务</string>
     <string name="today_cancel">取消</string>
     <string name="today_add_task">添加任务</string>

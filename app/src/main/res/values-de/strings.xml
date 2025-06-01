@@ -14,8 +14,8 @@
     <string name="day_tasks">Aufgaben:</string>
     <string name="day_unlocks">Entsperrungen: </string>
     <string name="history_history">Verlauf der täglichen Aktivitäten</string>
-    <string name="history_unlocks"> Entsperrungen</string>
-    <string name="history_tasks"> Aufgaben</string>
+    <string name="history_unlocks">"  Entsperrungen"</string>
+    <string name="history_tasks">"  Aufgaben"</string>
     <string name="today_cancel">Abbrechen</string>
     <string name="today_add_task">Aufgabe hinzufügen</string>
     <string name="today_added">Aufgabe wird zur heutigen Liste hinzugefügt</string>

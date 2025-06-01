@@ -56,6 +56,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationCompat
 import com.example.aevum.R
+import com.example.aevum.data.SettingsViewModel
 import kotlinx.coroutines.delay
 import kotlin.reflect.typeOf
 
@@ -69,8 +70,8 @@ class TimerState {
 
 
 @Composable
-@Preview
-fun FocusPage(modifier: Modifier = Modifier) {
+fun FocusPage(modifier: Modifier = Modifier, context: Context = LocalContext.current) {
+    val settingsViewModel = remember { SettingsViewModel(context) }
     val filled = MaterialTheme.colorScheme.primary
     val voided = MaterialTheme.colorScheme.primaryContainer
     var sizePx by remember { mutableIntStateOf(900) }
@@ -127,13 +128,13 @@ fun FocusPage(modifier: Modifier = Modifier) {
             )
         }
 
-        Timer(timerState)
+        Timer(timerState, settingsViewModel.currentTimerSound)
     }
 }
 
 
 @Composable
-fun Timer(timerState: TimerState) {
+fun Timer(timerState: TimerState, timerSoundResId: Int) {
     var mediaPlayer by remember { mutableStateOf<MediaPlayer?>(null) }
 
     val context = LocalContext.current
@@ -165,7 +166,7 @@ fun Timer(timerState: TimerState) {
     LaunchedEffect(timerState.isRunning) {
         if (timerState.isRunning && timerState.remainingTimeInSeconds > 0) {
             mediaPlayer?.release()
-            mediaPlayer = MediaPlayer.create(context, R.raw.nothing).apply {
+            mediaPlayer = MediaPlayer.create(context, timerSoundResId).apply {
                 isLooping = true
                 start()
             }

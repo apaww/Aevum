@@ -14,8 +14,8 @@
     <string name="day_tasks">Tareas:</string>
     <string name="day_unlocks">Desbloqueos: </string>
     <string name="history_history">Historial de actividad diaria</string>
-    <string name="history_unlocks"> desbloqueos</string>
-    <string name="history_tasks"> tareas</string>
+    <string name="history_unlocks">"  desbloqueos"</string>
+    <string name="history_tasks">"  tareas"</string>
     <string name="today_cancel">Cancelar</string>
     <string name="today_add_task">Añadir tarea</string>
     <string name="today_added">La tarea se añadirá a la lista de hoy</string>

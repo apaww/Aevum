@@ -25,7 +25,7 @@ object DayRepository {
     }
 
     private fun requireDao(): DayDAO {
-        return dayDao ?: throw IllegalStateException("DayRepository not initialized. Call initialize() first.")
+        return dayDao ?: throw IllegalStateException("Repository is not initialized.")
     }
 
     suspend fun createOrUpdateDay(
@@ -68,24 +68,24 @@ object DayRepository {
         }
     }
 
-    suspend fun addPhoneUnlocks(day: Int, unlockReasons: List<String>) {
-        withContext(Dispatchers.IO) {
-            val existingDay = requireDao().getDay(day) ?: run {
-                createOrUpdateDay(day = day, phoneUnlocks = unlockReasons)
-                return@withContext
-            }
-
-            val currentUnlocks = existingDay.phoneUnlocks.split("_").filter { it.isNotEmpty() }.toMutableList()
-            currentUnlocks.addAll(unlockReasons)
-
-            createOrUpdateDay(
-                day = day,
-                tasks = existingDay.tasksNames.split("_").filter { it.isNotEmpty() },
-                tasksDone = existingDay.tasksDone.map { it == '1' },
-                phoneUnlocks = currentUnlocks
-            )
-        }
-    }
+//    suspend fun addPhoneUnlocks(day: Int, unlockReasons: List<String>) {
+//        withContext(Dispatchers.IO) {
+//            val existingDay = requireDao().getDay(day) ?: run {
+//                createOrUpdateDay(day = day, phoneUnlocks = unlockReasons)
+//                return@withContext
+//            }
+//
+//            val currentUnlocks = existingDay.phoneUnlocks.split("_").filter { it.isNotEmpty() }.toMutableList()
+//            currentUnlocks.addAll(unlockReasons)
+//
+//            createOrUpdateDay(
+//                day = day,
+//                tasks = existingDay.tasksNames.split("_").filter { it.isNotEmpty() },
+//                tasksDone = existingDay.tasksDone.map { it == '1' },
+//                phoneUnlocks = currentUnlocks
+//            )
+//        }
+//    }
 
     suspend fun updateTaskDone(day: Int, taskIndex: Int, isDone: Boolean) {
         withContext(Dispatchers.IO) {

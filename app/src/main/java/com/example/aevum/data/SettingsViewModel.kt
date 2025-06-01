@@ -12,22 +12,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.example.aevum.R
-import com.example.aevum.services.PhoneUnlockTracker
 import com.example.aevum.ui.theme.ThemeManager
 import com.example.aevum.ui.theme.ThemeType
 
 class SettingsViewModel(context: Context) : ViewModel() {
     private val sharedPrefs = context.getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-
-    private val phoneUnlockTracker = PhoneUnlockTracker(context)
-
-    fun startTracking() {
-        phoneUnlockTracker.startTracking()
-    }
-
-    fun stopTracking() {
-        phoneUnlockTracker.stopTracking()
-    }
 
     var currentTheme by mutableStateOf(
         sharedPrefs.getString("theme", "SYSTEM")?.let {
@@ -39,10 +28,10 @@ class SettingsViewModel(context: Context) : ViewModel() {
     fun setTheme(theme: ThemeType) {
         currentTheme = theme
         sharedPrefs.edit().putString("theme", theme.name).apply()
-        ThemeManager.updateTheme(theme) // Update the global theme state
+        ThemeManager.updateTheme(theme)
     }
 
-    // Timer sound state
+
     var currentTimerSound by mutableStateOf(sharedPrefs.getInt("timer_sound", R.raw.nothing))
         private set
 
@@ -55,9 +44,9 @@ class SettingsViewModel(context: Context) : ViewModel() {
         ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
     )
 
-    var hasPhoneStatePermission by mutableStateOf(
-        ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
-    )
+//    var hasPhoneStatePermission by mutableStateOf(
+//        ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
+//    )
 
     fun requestNotificationPermission(activity: Activity, onResult: (Boolean) -> Unit) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -67,17 +56,17 @@ class SettingsViewModel(context: Context) : ViewModel() {
                 NOTIFICATION_PERMISSION_REQUEST_CODE
             )
         } else {
-            onResult(true) // Permission granted by default on older versions
+            onResult(true)
         }
     }
 
-    fun requestPhoneStatePermission(activity: Activity, onResult: (Boolean) -> Unit) {
-        ActivityCompat.requestPermissions(
-            activity,
-            arrayOf(Manifest.permission.READ_PHONE_STATE),
-            PHONE_STATE_PERMISSION_REQUEST_CODE
-        )
-    }
+//    fun requestPhoneStatePermission(activity: Activity, onResult: (Boolean) -> Unit) {
+//        ActivityCompat.requestPermissions(
+//            activity,
+//            arrayOf(Manifest.permission.READ_PHONE_STATE),
+//            PHONE_STATE_PERMISSION_REQUEST_CODE
+//        )
+//    }
 
     var currentLanguage by mutableStateOf(
         sharedPrefs.getString("language", "en") ?: "en"
